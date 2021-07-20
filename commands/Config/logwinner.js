@@ -3,24 +3,32 @@ const schema = require("../../schemas/winners.js");
 module.exports = {
   name: "logwinner",
   aliases: ["logw"],
+  userPermissions: ["MANAGE_MESSAGES"],
+  category: "Config",
   description: "Log a giveaway/event winner!",
   run: async (client, message, args) => {
+    const DATA = await client.schemas.winners.findOne({
+      id: message.guild.id,
+    });
     const winner =
       message.mentions.members.first() ||
       message.guild.members.cache.get(args[0]);
     if (!winner)
       return message.channel.send(
-        `Hey! The usage of this command is \`${client.prefix}logwinner <member>\``
+        `Hey! The usage of this command is \`${DATA.prefix}logwinner <member>\``
       );
 
     message.channel.send(`Logged \`${winner.user.tag}\``);
 
-    const DB = schema.findOne({
-      id: message.guild.id,
-    }, async(err, data) => {
-      if(err) return console.log(err);
-      data.list.push(winner.id);
-      data.save();
-    });
+    const DB = await client.schemas.winners.findOne(
+      {
+        id: message.guild.id,
+      },
+      async (err, data) => {
+        if (err) return console.log(err);
+        data.list.push(winner.id);
+        data.save();
+      }
+    );
   },
 };

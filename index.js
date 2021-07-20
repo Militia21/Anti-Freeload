@@ -8,26 +8,29 @@ app.get("/", (req, res) => res.send("I am alive!"));
 app.listen((port) => console.log("Listening to webserver"));
 
 //Dependencies
-const Discord = require("discord.js");
+const { Client, Collection, Intents } = require("discord.js");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const glob = require("glob");
 const { promisify } = require("util");
 
 //Initiating the client
-const client = new Discord.Client();
+const client = new Client({
+  intents: Intents.ALL,
+});
 const globPromise = promisify(glob);
+global.client = client;
 
 //Client variables
-client.commands = new Discord.Collection();
-client.events = new Discord.Collection();
-client.aliases = new Discord.Collection();
-client.cooldowns = new Discord.Collection();
+client.commands = new Collection();
+client.events = new Collection();
+client.aliases = new Collection();
+client.cooldowns = new Collection();
 client.owners = ["742972160158728283"];
 client.categories = new Set();
 client.prefix = "s!";
 client.schemas = {
-  winners: require('./schemas/winners')
+  winners: require("./schemas/winners"),
 };
 
 (async () => {

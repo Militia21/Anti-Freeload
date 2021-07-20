@@ -6,8 +6,8 @@ module.exports = {
     console.log(`${client.user.tag} is ready to go!`);
 
     client.user.setActivity({
-      name: 'freeloaders.',
-      type: "WATCHING",
+      name: `${client.prefix}help`,
+      type: "PLAYING",
     });
 
     mongoose.connect(process.env.mongoURI, {
