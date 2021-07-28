@@ -8,7 +8,8 @@ module.exports = {
 
     if (
       message.channel.id === "854266708844085249" &&
-      message.author !== client.user
+      message.author !== client.user &&
+      message.author.bot
     ) {
       message.channel.send(
         "<:dj_AngryPing:854558385773084692> **Annoyed by this ping**\n\nThen follow these instructions:\n<a:dj_arrow2:858732440464785419> Go to <#854561150465605642> and get <@&854280331314200596>\n<a:dj_arrow2:858732440464785419> Get all the ping-roles from <#854561150465605642> so you **NEVER** miss out on our heists!\n<a:dj_arrow2:858732440464785419> Checkout <#859687290515357716> for over **200 mil** worth of giveaways as compensation for this ping!"

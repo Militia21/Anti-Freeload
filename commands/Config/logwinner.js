@@ -18,7 +18,7 @@ module.exports = {
         `Hey! The usage of this command is \`${DATA.prefix}logwinner <member>\``
       );
 
-    if(DATA.includes(winner.id)) return message.channel.send("That user has already been logged as a winner!");
+    if(DATA.list.includes(winner.id)) return message.channel.send("That user has already been logged as a winner!");
 
     message.channel.send(`Logged \`${winner.user.tag}\``);
 
