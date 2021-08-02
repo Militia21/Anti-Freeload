@@ -1,12 +1,3 @@
 {
-  "files": {
-    "commands/Utility/lottery.js": [
-      {
-        "id": "ae50388f-e878-43ed-b2d5-2d89dce840e2",
-        "line": 94,
-        "version": 1635,
-        "index": 2957
-      }
-    ]
-  }
+  "files": {}
 }

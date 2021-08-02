@@ -1,4 +1,4 @@
-//Pinging
+//Pinging; You only need this part if you want to host the bot.
 const express = require("express");
 const app = express();
 const port = 3000;
