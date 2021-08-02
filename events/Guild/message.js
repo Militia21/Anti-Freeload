@@ -19,7 +19,7 @@ module.exports = {
     const DB = await client.schemas.winners.findOne({
       id: message.guild.id,
     });
-    
+
     if (
       !message.content.startsWith(DB.prefix) ||
       message.author.bot ||

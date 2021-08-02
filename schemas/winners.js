@@ -27,5 +27,21 @@ module.exports = model(
       type: Number,
       default: 0,
     },
+    lottery: {
+      status: {
+        type: Boolean,
+        default: false,
+      },
+      entries: {
+        type: Array,
+        allowNull: true,
+        default: null,
+      },
+      channel: {
+        type: String,
+        allowNull: true,
+        default: null,
+      },
+    },
   })
 );
