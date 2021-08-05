@@ -12,7 +12,7 @@ module.exports = {
     });
     const lotteryChannel = message.guild.channels.cache.get(DB.lottery.channel);
 
-    if (!subCommands.includes(args[0].toLowerCase()))
+    if (!args[0] || !subCommands.includes(args[0].toLowerCase()))
       return message.channel.send(
         `Invalid SubCommand.\nPossibile SubCommands: \`start, end, enter\``
       );
@@ -49,6 +49,7 @@ module.exports = {
         const winnerUser = await message.guild.members.cache.get(winner);
 
         DB.lottery.status = false;
+        DB.lottery.entries = null;
         DB.save();
 
         if (!winner)
@@ -78,10 +79,22 @@ module.exports = {
 
         if (!user) return message.channel.send(`Please enter a valid user.`);
 
-        DB.lottery.entries.push(user.id);
+        let entries = 1;
+        const obj = DB.lottery.entries[user.id];
+        if (obj) {
+          let number = obj.entries;
+          number++;
+          entries = number;
+          DB.lottery.entries = number;
+        }
+
+        if (!obj)
+          DB.lottery.entries[user.id] = {
+            entries: entries,
+          };
         DB.save();
 
-        message.channel.send(`Entered \`${user.tag}\``);
+        message.channel.send(`Entered \`${user.user.tag}\``);
 
         if (!DB.lottery.status)
           return message.channel.send(

@@ -6,7 +6,7 @@ module.exports = {
     console.log(`${client.user.tag} is ready to go!`);
 
     client.user.setActivity({
-      name: `${client.prefix}help`,
+      name: `Freeloader Simulator v1.0.1`,
       type: "PLAYING",
     });
 
